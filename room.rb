@@ -1,15 +1,16 @@
 class Room
 
-attr_reader :name, :guests, :playlist
+attr_reader :name, :guests, :playlist, :capacity
 
-  def initialize(name, guests = [], playlist = [])
+  def initialize(name, capacity)
     @name = name
-    @guests = guests
-    @playlist = playlist
+    @guests = []
+    @playlist = []
+    @capacity = capacity
   end
 
   def checkin_guest(guest_obj)
-    @guests << guest_obj
+    @guests << guest_obj if @guests.length < @capacity
   end
 
   def checkout_guest(guest_obj)

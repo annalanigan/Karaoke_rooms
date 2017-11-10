@@ -13,8 +13,9 @@ class TestRoom < MiniTest::Test
     @song1 = Song.new("Life on Mars", "Zhavid Bowie")
     @song2 = Song.new("Rooting For You", "London Grammar")
     playlist = [@song1, @song2]
-    @room1 = Room.new("Rock Room", guests, playlist)
-    @room2 = Room.new("Lala Land")
+    @room1 = Room.new("Rock Room", 10)
+    @room2 = Room.new("Lala Land", 5)
+    @room3 = Room.new("Crowded House", 3)
   end
 
   def test_room_has_name
@@ -22,6 +23,8 @@ class TestRoom < MiniTest::Test
   end
 
   def test_room_has_guests__two
+    @room1.checkin_guest(@guest1)
+    @room1.checkin_guest(@guest2)
     assert_equal(2, @room1.guests.length)
   end
 
@@ -30,6 +33,8 @@ class TestRoom < MiniTest::Test
   end
 
   def test_room_has_songs__two
+    @room1.add_song(@song1)
+    @room1.add_song(@song2)
     assert_equal(2, @room1.playlist.length)
   end
 
@@ -43,6 +48,8 @@ class TestRoom < MiniTest::Test
   end
 
   def test_checkout_guest
+    @room1.checkin_guest(@guest1)
+    @room1.checkin_guest(@guest2)
     @room1.checkout_guest(@guest2)
     assert_equal(1, @room1.guests.length)
   end
@@ -50,6 +57,18 @@ class TestRoom < MiniTest::Test
   def test_add_song
     @room2.add_song(@song2)
     assert_equal(1, @room2.playlist.length)
+  end
+
+  def test_check_capacity
+    assert_equal(10, @room1.capacity)
+  end
+
+  def test_checkin_too_many_guests
+    @room3.checkin_guest(@guest1)
+    @room3.checkin_guest(@guest2)
+    @room3.checkin_guest(@guest1)
+    @room3.checkin_guest(@guest2)
+    assert_equal(3, @room3.guests.length)
   end
 
 end
