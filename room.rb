@@ -16,4 +16,8 @@ attr_reader :name, :guests, :playlist
     @guests.delete(guest_obj)
   end
 
+  def add_song(song_obj)
+    @playlist << song_obj
+  end
+
 end
