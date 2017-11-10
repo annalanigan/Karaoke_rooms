@@ -13,11 +13,7 @@ attr_reader :name, :guests, :playlist
   end
 
   def checkout_guest(guest_obj)
-    @guests.each do |guest|
-      if guest == guest_obj
-        @guests.delete(guest_obj)
-      end
-    end
+    @guests.delete(guest_obj)
   end
 
 end
