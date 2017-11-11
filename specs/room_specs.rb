@@ -7,13 +7,12 @@ require_relative("../song.rb")
 class TestRoom < MiniTest::Test
 
   def setup
-    @guest1 = Guest.new("Anna", 100)
-    @guest2 = Guest.new("Gaelle", 50)
-    @guest3 = Guest.new("Angie", 5)
-    guests = [@guest1, @guest2]
+    @guest1 = Guest.new("Anna", 100, @song1)
+    @guest2 = Guest.new("Gaelle", 50, @song2)
+    @guest3 = Guest.new("Angie", 5, @song3)
     @song1 = Song.new("Life on Mars", "Zhavid Bowie")
     @song2 = Song.new("Rooting For You", "London Grammar")
-    playlist = [@song1, @song2]
+    @song3 = Song.new("My Type", "Saint Motel")
     @room1 = Room.new("Rock Room", 10)
     @room2 = Room.new("Lala Land", 5)
     @room3 = Room.new("Crowded House", 3)
@@ -83,5 +82,22 @@ class TestRoom < MiniTest::Test
     @room3.checkin_guest(@guest3)
     assert_equal(0, @room3.guests.length)
   end
+
+
+  def test_room_tab
+    assert_equal(0, @room1.tab)
+  end
+
+  def test_tab_after_checkin
+    @room1.checkin_guest(@guest1)
+    assert_equal(10, @room1.tab)
+  end
+
+  # def test_cheer_if_song_on_playist
+  #   @room2.add_song(@song1)
+  #   @room2.add_song(@song2)
+  #   @room2.add_song(@song3)
+  #   assert_equal("Ya Dancer!", @room2.check_song(@guest1))
+  # end
 
 end
