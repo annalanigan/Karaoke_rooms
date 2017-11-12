@@ -59,13 +59,13 @@ while response.upcase != "Q"
     puts "You are checked in and we have deducted the £10 room charge."
     puts guest1.display_details
     puts ""
-  when "3"
-    puts: "Please enter the song title: "
-    title = gets.chomp
-    puts "Please enter the artist: "
-    artist = gets.chomp
-    song = Song.new(title, artist)
-    
+  # when "3"
+  #   puts: "Please enter the song title: "
+  #   title = gets.chomp
+  #   puts "Please enter the artist: "
+  #   artist = gets.chomp
+  #   song = Song.new(title, artist)
+  #
   end
   response = menu
 end
