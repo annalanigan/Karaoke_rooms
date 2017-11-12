@@ -3,6 +3,7 @@ require("minitest/rg")
 require_relative("../room.rb")
 require_relative("../guest.rb")
 require_relative("../song.rb")
+require_relative("../bar_tab.rb")
 
 class TestRoom < MiniTest::Test
 
@@ -13,9 +14,10 @@ class TestRoom < MiniTest::Test
     @song1 = Song.new("Life on Mars", "Zhavid Bowie")
     @song2 = Song.new("Rooting For You", "London Grammar")
     @song3 = Song.new("My Type", "Saint Motel")
-    @room1 = Room.new("Rock Room", 10)
-    @room2 = Room.new("Lala Land", 5)
-    @room3 = Room.new("Crowded House", 3)
+    @bar1 = BarTab.new
+    @room1 = Room.new("Rock Room", 10, @bar1)
+    @room2 = Room.new("Lala Land", 5, @bar1)
+    @room3 = Room.new("Crowded House", 3, @bar1)
   end
 
   def test_room_has_name
@@ -85,19 +87,18 @@ class TestRoom < MiniTest::Test
 
 
   def test_room_tab
-    assert_equal(0, @room1.tab)
+    assert_equal(0, @room1.bar_tab.tab)
   end
 
   def test_tab_after_checkin
     @room1.checkin_guest(@guest1)
-    assert_equal(10, @room1.tab)
+    assert_equal(10, @room1.bar_tab.tab)
   end
 
   # def test_cheer_if_song_on_playist
   #   @room2.add_song(@song1)
   #   @room2.add_song(@song2)
-  #   @room2.add_song(@song3)
-  #   assert_equal("Ya Dancer!", @room2.check_song(@guest1))
+  #   assert_equal("Ya Dancer!", @room2.check_song(@guest2))
   # end
 
 end

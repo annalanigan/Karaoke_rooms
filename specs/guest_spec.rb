@@ -30,4 +30,13 @@ class TestGuest < MiniTest::Test
     assert_equal("Ya Dancer!", @guest.cheer(@fav_song))
   end
 
+  def test_buy_drink
+    @guest.buy_drink(5)
+    assert_equal(95, @guest.wallet)
+  end
+
+  def test_display_details
+    assert_equal("Name: Anna   Budget: 100", @guest.display_details)
+  end
+
 end

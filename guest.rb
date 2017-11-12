@@ -18,4 +18,12 @@ class Guest
     end
   end
 
+  def buy_drink(value)
+    @wallet -= value
+  end
+
+  def display_details
+    "Name: #{@name}   Budget: #{@wallet}"
+  end
+
 end

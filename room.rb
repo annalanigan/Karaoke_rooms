@@ -1,20 +1,20 @@
 class Room
   FEE = 10
 
-attr_reader :name, :guests, :playlist, :capacity, :tab
+attr_reader :name, :guests, :playlist, :capacity, :bar_tab
 
-  def initialize(name, capacity)
+  def initialize(name, capacity, bar_tab)
     @name = name
     @guests = []
     @playlist = []
     @capacity = capacity
-    @tab = 0
+    @bar_tab = bar_tab
   end
 
   def checkin_guest(guest_obj)
     if check_capacity && guest_obj.wallet >= FEE
       guest_obj.make_payment(FEE)
-      @tab += FEE
+      @bar_tab.take_fee(FEE)
       @guests << guest_obj
     end
   end
